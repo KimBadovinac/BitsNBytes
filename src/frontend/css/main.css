@@ -3,6 +3,26 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
+* {box-sizing: border-box;}
+
 body {
-  padding-top: 56px;
+  padding-top: 220px;
+}
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 90px 10px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+
+@media (max-width: 978px) {
+
+  body {
+    padding-top: 350px;
+  }
+
 }
