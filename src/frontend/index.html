@@ -27,10 +27,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
     <div class="container" id="navbar-right">
       <a class="navbar-brand" href="#">Coco Rescue</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" id="togglemenu" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse show navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Domov
@@ -64,11 +64,83 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">Coco Rescue</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
+        <div class="card">
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="" checked>
+                  <span class="form-check-label">
+			    Vsi
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Izgubljeni
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Najdeni
+			  </span>
+                </label>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Žival:</label>
+                  <select class="form-control">
+                    <option value="catalogue" selected>Vsi</option>
+                    <option value="modal">Pes</option>
+                    <option value="price">Mačka</option>
+                    <option value="popular">Drugo</option>
+                  </select>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Barva:</label>
+                  <select class="form-control">
+                    <option value="catalogue" selected>Vse</option>
+                    <option value="modal">Črna</option>
+                    <option value="price">Bela</option>
+                    <option value="popular">Siva</option>
+                    <option value="popular">Rjava</option>
+                    <option value="popular">Drugo</option>
+                  </select>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Ključna beseda:</label>
+                  <div class="search-wrapper panel-heading col-sm-12">
+                    <input class="form-control" type="text" v-model="searchQuery" placeholder="plašna..." />
+                  </div>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <button type="button" class="btn btn-dark btn-lg btn-block">Poišči</button>
+
+        </div> <!-- card.// -->
+
 
       </div>
       <!-- /.col-lg-3 -->
