@@ -27,10 +27,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
     <div class="container" id="navbar-right">
       <a class="navbar-brand" href="#">Coco Rescue</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" id="togglemenu" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse show navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Domov
@@ -64,11 +64,53 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">Coco Rescue</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
+        <div class="card">
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Žival
+                    <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li>Pes</li>
+                    <li>Mačka</li>
+                    <li>Drugo</li>
+                  </ul>
+                </div>
+
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <header class="card-header">
+              <h6 class="title">Choose type </h6>
+            </header>
+            <div class="filter-content">
+              <div class="card-body">
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    First hand items
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Brand new items
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Some other option
+			  </span>
+                </label>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+        </div> <!-- card.// -->
+
 
       </div>
       <!-- /.col-lg-3 -->
