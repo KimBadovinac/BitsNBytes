@@ -22,110 +22,118 @@
 <body id="page-top">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!--ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status-->
+
+
 <!--First-->
-<section class="page-section" id="first">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-                <h2 class="text-center mt-0">Ste našli izgubljeno žival ali jo iščete?</h2>
-            </div>
-            <div class="col-lg-4 text-center">
-                <a class="btn btn-light btn-nasel-iscem" href="#second">Našel</a>
-            </div>
-            <div class="col-lg-4 text-center">
-                <a class="btn btn-light btn-nasel-iscem" href="#second">Iščem</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Second-->
-<section class="page-section" id="second">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h2 class="text-center mt-0">Lokacija</h2>
-                <img src="" alt="zemljevid">
-            </div>
-        </div>
-        <a class="btn btn-icon" href="#third"><i class="fas fa-arrow-down fa-8x"></i></a>
-    </div>
-</section>
-<section class="page-section" id="third">
-    <div class="container">
-        <div class="row py-4">
-            <div class="col-lg-6 mx-auto">
-
-                <!-- Upload image input-->
-                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                    <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Izberite fotografijo živali.</label>
-                    <div class="input-group-append">
-<!--                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i></label>-->
-                    </div>
+<form action="/api/insertzival" method="post" role="form">
+    <section class="page-section" id="first">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-center mt-0">Ste našli izgubljeno žival ali jo iščete?</h2>
                 </div>
-
-                <!-- Uploaded image area-->
-                <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid d-block"></div>
-
+                <div class="col-lg-4 text-center">
+                    <label for="nasel">NAŠEL</label>
+                    <input type="button" id="nasel" class="btn btn-light btn-nasel-iscem" name="status" href="#second">
+                </div>
+                <div class="col-lg-4 text-center">
+                    <label for="iscem">IŠČEM</label>
+                    <input type="button" id="iscem" class="btn btn-light btn-nasel-iscem" name="status" href="#second">
+                </div>
             </div>
         </div>
+    </section>
+    <!--Second-->
+    <section class="page-section" id="second">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-center mt-0">Lokacija</h2>
+                    <img src="" alt="zemljevid">
+                </div>
+            </div>
+            <a class="btn btn-icon" href="#third"><i class="fas fa-arrow-down fa-6x"></i></a>
+        </div>
+    </section>
+    <section class="page-section" id="third">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-lg-6 mx-auto">
 
-        <a class="btn btn-icon" href="#vrsta"><i class="fas fa-arrow-down fa-8x"></i></a>
-    </div>
-</section>
-<section class="page-section" id="vrsta">
-    <div class="container">
-        <h2 class="text-center mt-0">Vrsta živali</h2>
-        <a class="btn btn-transparent" href="#barva">Pes</a>
-        <a class="btn btn-transparent" href="#barva">Mačka</a>
-        <a class="btn btn-transparent" href="#barva">Drugo</a>
-    </div>
-</section>
-<section class="page-section" id="barva">
-    <div class="container">
-        <h2 class="text-center mt-0">Barva živali</h2>
-        <a class="btn btn-transparent">Črna</a>
-        <a class="btn btn-transparent">Rjava</a>
-        <a class="btn btn-transparent">Bela</a>
-        <a class="btn btn-transparent">Siva</a>
-        <a class="btn btn-transparent">Drugo</a>
-    </div>
-    <a class="btn btn-icon" href="#datum"><i class="fas fa-arrow-down fa-8x"></i></a>
-</section>
-<section class="page-section" id="datum">
-    <div class="container">
-        <h2 class="text-center mt-0">Kdaj se je izgubila/našla?</h2>
-<!--        <div id="date-picker" class="md-form md-outline input-with-post-icon datepicker">-->
-        <input required="" type="date" id="date" class="form-control" href="#opis">
-    </div>
-    <a class="btn btn-icon" href="#opis"><i class="fas fa-arrow-down fa-8x"></i></a>
-    <!--        </div>-->
-</section>
-<section class="page-section" id="opis">
-    <div class="container">
-        <h2 class="text-center mt-0">Dodatne lastnosti, opombe, opis...</h2>
-        <input required="" type="text" id="opombe" class="form-control">
-    </div>
-    <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
-    <a class="btn btn-icon" href="#kontakt"><i class="fas fa-arrow-down fa-8x"></i></a>
-</section>
-<section class="page-section" id="kontakt">
-    <div class="container">
-        <h2 class="text-center mt-0">Kontakt</h2>
-        <input required="" type="text" id="mail" class="form-control">
-        <input required="" type="text" id="telefon" class="form-control">
-    </div>
-    <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
-    <a class="btn btn-icon" href="#najblizje"><i class="fas fa-arrow-down fa-8x"></i></a>
-</section>
-<section class="page-section" id="najblizje">
-    <div class="container">
-        <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>
-        <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>
-    </div>
-    <!--        s klikom na tole se objavi nova zadeva v bazo-->
-    <a class="btn btn-transparent">Ne, objavi.</a>
-</section>
+                    <!-- Upload image input-->
+                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                        <label id="upload-label" for="upload" class="font-weight-light text-muted">Izberite fotografijo živali.</label>
+                        <div class="input-group-append">
+    <!--                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i></label>-->
+                        </div>
+                    </div>
+
+                    <!-- Uploaded image area-->
+                    <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid d-block"></div>
+
+                </div>
+            </div>
+
+            <a class="btn btn-icon" href="#vrsta"><i class="fas fa-arrow-down fa-6x"></i></a>
+        </div>
+    </section>
+    <section class="page-section" id="vrsta">
+        <div class="container">
+            <h2 class="text-center mt-0">Vrsta živali</h2>
+            <a class="btn btn-transparent" href="#barva">Pes</a>
+            <a class="btn btn-transparent" href="#barva">Mačka</a>
+            <a class="btn btn-transparent" href="#barva">Drugo</a>
+        </div>
+    </section>
+    <section class="page-section" id="barva">
+        <div class="container">
+            <h2 class="text-center mt-0">Barva živali</h2>
+            <a class="btn btn-transparent">Črna</a>
+            <a class="btn btn-transparent">Rjava</a>
+            <a class="btn btn-transparent">Bela</a>
+            <a class="btn btn-transparent">Siva</a>
+            <a class="btn btn-transparent">Drugo</a>
+        </div>
+        <a class="btn btn-icon" href="#datum"><i class="fas fa-arrow-down fa-6x"></i></a>
+    </section>
+    <section class="page-section" id="datum">
+        <div class="container">
+            <h2 class="text-center mt-0">Kdaj se je izgubila/našla?</h2>
+    <!--        <div id="date-picker" class="md-form md-outline input-with-post-icon datepicker">-->
+            <input required="" type="date" id="date" class="form-control" href="#opis">
+        </div>
+        <a class="btn btn-icon" href="#opis"><i class="fas fa-arrow-down fa-6x"></i></a>
+        <!--        </div>-->
+    </section>
+    <section class="page-section" id="opis">
+        <div class="container">
+            <h2 class="text-center mt-0">Dodatne lastnosti, opombe, opis...</h2>
+            <input required="" type="text" id="opombe" name="opis" class="form-control">
+        </div>
+        <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
+        <a class="btn btn-icon" href="#kontakt"><i class="fas fa-arrow-down fa-6x"></i></a>
+    </section>
+    <section class="page-section" id="kontakt">
+        <div class="container">
+            <h2 class="text-center mt-0">Kontakt</h2>
+            <input required="" type="text" id="mail" class="form-control">
+            <input required="" type="text" id="telefon" class="form-control">
+        </div>
+        <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
+        <a class="btn btn-icon" href="#najblizje"><i class="fas fa-arrow-down fa-6x"></i></a>
+    </section>
+    <section class="page-section" id="najblizje">
+        <div class="container">
+            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>
+            <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>
+        </div>
+        <!--        s klikom na tole se objavi nova zadeva v bazo-->
+        <button type="submit" formmethod="post" class="btn btn-transparent" >Ne, objavi.</button>
+    </section>
+
+</form>
 
 <!--<footer class="bg-light py-5">-->
 <!--    <div class="container"><div class="small text-center text-muted"></div></div>-->

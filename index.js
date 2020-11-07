@@ -4,6 +4,9 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 
 const frontendPath = __dirname + '/src/frontend';
 app.use(express.static(frontendPath));
@@ -71,6 +74,8 @@ app.get('/api/getzivali', (req, res, next) => {
 
 // inserting
 app.post('/api/insertzival', (req, res) => {
+    var opis = req.body.opis;
+    console.log(opis)
     var id = req.body.id;
     var ime = req.body.ime;
     var vrsta = req.body.vrsta;
@@ -80,8 +85,8 @@ app.post('/api/insertzival', (req, res) => {
     var datum = req.body.datum;
     var kontakt_mail = req.body.kontakt_mail;
     var kontakt_tel = req.body.kontakt_tel;
-    var opis = req.body.opis;
     var status = req.body.status;
+
 
     // open db conn
     let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
