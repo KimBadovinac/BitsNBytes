@@ -20,5 +20,5 @@ app.use(function(req, res, next){
 });
 
 app.get('*', (req, res, next) => {
-    res.sendFile(path.join('frontendPath','index.html'));
+    res.sendFile(path.join(frontendPath,'index.html'));
 });
