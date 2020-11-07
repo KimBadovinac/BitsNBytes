@@ -84,7 +84,7 @@ app.get('/insertzival', (req, res, next) => {
       if (err) {
         console.error(err.message);
       }
-      console.log('Connected to the database.');
+      // console.log('Connected to the database.');
     });
 
     // insert data
@@ -103,7 +103,7 @@ app.get('/insertzival', (req, res, next) => {
       if (err) {
         return console.error(err.message);
       }
-      console.log('Close the database connection.');
+      // console.log('Close the database connection.');
     });
 
 });
