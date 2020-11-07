@@ -21,33 +21,91 @@ app.use(function(req, res, next){
 
 
 
+
+
+app.get('/', (req, res, next) => {
+    res.sendFile(path.join(frontendPath,'index.html'));
+});
+
+
+
+
+
+
+
+
+///////////////////////////////// db dao ///////////y<y/////////////////////
 const sqlite3 = require('sqlite3').verbose();
 
 
-let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the database.');
+// Retrieving All Rows
+app.get('/getzivali', (req, res, next) => {
+    // open db conn
+    let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      // console.log('Connected to the database.');
+    });
+
+    // get rows
+    db.all("SELECT * FROM Zivali", [], (err, rows) => {
+      if (err) {
+        throw err;
+      }
+      // rows.forEach((row) => {
+      //   console.log(row);
+      // });
+      res.send(JSON.stringify(rows, null, 2));
+    });
+
+    // close db conn
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      // console.log('Close the database connection.');
+    });
 });
 
-//Retrieving All Rows
-db.all("SELECT ime, vrsta FROM Zivali", (error, rows) => {
-    rows.forEach((row) => {
-        console.log(row);
-    })
+// inserting
+// todo: make post
+// app.post('/api/users', function(req, res) {
+//     var user_id = req.body.id;
+//     var token = req.body.token;
+//     var geo = req.body.geo;
+//
+//     res.send(user_id + ' ' + token + ' ' + geo);
+// });
+app.get('/insertzival', (req, res, next) => {
+
+    // open db conn
+    let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      console.log('Connected to the database.');
+    });
+
+    // insert data
+    let data = ['tretja', "papiga"]
+    db.run(`INSERT INTO Zivali(ime, vrsta) VALUES(?, ?)`, data,
+        function(err) {
+            if (err) {
+              return console.log(err.message);
+            }
+            // get the last insert id
+            console.log(`A row has been inserted with rowid ${this.lastID}`);
+    });
+
+    // close db conn
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Close the database connection.');
+    });
+
 });
 
-// close the database connection
-db.close((err) => {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log('Close the database connection.');
-});
-
-
-app.get('*', (req, res, next) => {
-    res.sendFile(path.join(frontendPath,'index.html'));
-});
 
