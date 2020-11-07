@@ -18,3 +18,11 @@ body {
   top: 0;
   z-index: 99;
 }
+
+@media (max-width: 978px) {
+
+  body {
+    padding-top: 350px;
+  }
+
+}

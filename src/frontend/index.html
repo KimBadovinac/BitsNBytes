@@ -27,10 +27,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
     <div class="container" id="navbar-right">
       <a class="navbar-brand" href="#">Coco Rescue</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" id="togglemenu" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse show navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Domov
@@ -64,11 +64,107 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">Coco Rescue</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
+        <div class="card">
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="" checked>
+                  <span class="form-check-label">
+			    Vsi
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Izgubljeni
+			  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+			    Najdeni
+			  </span>
+                </label>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Žival:</label>
+                  <select class="form-control">
+                    <option value="catalogue" selected>Vsi</option>
+                    <option value="modal">Pes</option>
+                    <option value="price">Mačka</option>
+                    <option value="popular">Drugo</option>
+                  </select>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Barva:</label>
+                  <form>
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" value="">
+                      <span class="form-check-label">
+				    bela
+				  </span>
+                    </label> <!-- form-check.// -->
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" value="">
+                      <span class="form-check-label">
+				    črna
+				  </span>
+                    </label>  <!-- form-check.// -->
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" value="">
+                      <span class="form-check-label">
+				    siva
+				  </span>
+                    </label>  <!-- form-check.// -->
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" value="">
+                      <span class="form-check-label">
+				    rjava
+				  </span>
+                    </label>  <!-- form-check.// -->
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" value="">
+                      <span class="form-check-label">
+				    drugo
+				  </span>
+                    </label>  <!-- form-check.// -->
+                  </form>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <article class="card-group-item">
+            <div class="filter-content">
+              <div class="card-body">
+                <div class="dropdown">
+                  <label>Ključna beseda:</label>
+                  <div class="search-wrapper panel-heading col-sm-12">
+                    <input class="form-control" type="text" v-model="searchQuery" placeholder="plašna..." />
+                  </div>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+
+          <button type="button" class="btn btn-dark btn-lg btn-block">Poišči</button>
+
+        </div> <!-- card.// -->
+
 
       </div>
       <!-- /.col-lg-3 -->
@@ -102,103 +198,31 @@
           </a>
         </div>
 
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item One</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Two</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        <div class="row" id="animalCards">
+          <div class="container-fluid">  <!-- start animal cards template -->
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item One</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">
+                    <ul>
+                      <li>
+                        Barva: {{barva}}
+                      </li>
+                    </ul>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Four</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Five</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
+          </div>  <!-- end animal cards template -->
 
         </div>
         <!-- /.row -->
@@ -233,7 +257,7 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <script src="js/main.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" crossorigin="anonymous"></script>
   <script src="http://livejs.com/live.js"></script>
 
 </body>

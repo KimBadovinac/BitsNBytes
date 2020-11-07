@@ -39,7 +39,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 
 // Retrieving All Rows
-app.get('/getzivali', (req, res, next) => {
+app.get('/api/getzivali', (req, res, next) => {
     // open db conn
     let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
       if (err) {
@@ -68,16 +68,20 @@ app.get('/getzivali', (req, res, next) => {
     });
 });
 
+
 // inserting
-// todo: make post
-// app.post('/api/users', function(req, res) {
-//     var user_id = req.body.id;
-//     var token = req.body.token;
-//     var geo = req.body.geo;
-//
-//     res.send(user_id + ' ' + token + ' ' + geo);
-// });
-app.get('/insertzival', (req, res, next) => {
+app.post('/api/insertzival', (req, res) => {
+    var id = req.body.id;
+    var ime = req.body.ime;
+    var vrsta = req.body.vrsta;
+    var slika = req.body.slika;
+    var barva = req.body.barva;
+    var lokacija = req.body.lokacija;
+    var datum = req.body.datum;
+    var kontakt_mail = req.body.kontakt_mail;
+    var kontakt_tel = req.body.kontakt_tel;
+    var opis = req.body.opis;
+    var status = req.body.status;
 
     // open db conn
     let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -88,8 +92,9 @@ app.get('/insertzival', (req, res, next) => {
     });
 
     // insert data
-    let data = ['tretja', "papiga"]
-    db.run(`INSERT INTO Zivali(ime, vrsta) VALUES(?, ?)`, data,
+    let data = [id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status]
+    db.run(`INSERT INTO Zivali(id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status) \
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, data,
         function(err) {
             if (err) {
               return console.log(err.message);
@@ -98,7 +103,7 @@ app.get('/insertzival', (req, res, next) => {
             console.log(`A row has been inserted with rowid ${this.lastID}`);
     });
 
-    // close db conn
+    // close db/save to db
     db.close((err) => {
       if (err) {
         return console.error(err.message);
