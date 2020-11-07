@@ -19,6 +19,35 @@ app.use(function(req, res, next){
     next();
 });
 
+
+
+const sqlite3 = require('sqlite3').verbose();
+
+
+let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the database.');
+});
+
+//Retrieving All Rows
+db.all("SELECT ime, vrsta FROM Zivali", (error, rows) => {
+    rows.forEach((row) => {
+        console.log(row);
+    })
+});
+
+// close the database connection
+db.close((err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Close the database connection.');
+});
+
+
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(frontendPath,'index.html'));
 });
+
