@@ -1,14 +1,14 @@
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").style.padding = "30px 10px";
-        $('.navbar-collapse').collapse('hide');
-    } else {
-        document.getElementById("navbar").style.padding = "80px 10px";
-        $('.navbar-collapse').collapse('show');
-    }
-}
+// function scrollFunction() {
+//     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+//         document.getElementById("navbar").style.padding = "20px 10px";
+//         $('.navbar-collapse').collapse('hide');
+//     } else {
+//         document.getElementById("navbar").style.padding = "50px 10px";
+//         $('.navbar-collapse').collapse('show');
+//     }
+// }
 
 // GOOGLE MAPS
 var rezultatAPIklic = [
@@ -100,8 +100,8 @@ var animalCard = [ // todo: not used
     '<div class="card h-100">',
       '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
       '<div class="card-body">',
-        '<h4 class="card-title">',
-          '<a href="#">{{ime}}</a>',
+        '<h4 class="card-title" style="text-align: center">',
+          '<a href="#">{{vrsta}}</a>',
         '</h4>',
         // '<h5>$24.99</h5>',
         '<p class="card-text">',
@@ -109,7 +109,7 @@ var animalCard = [ // todo: not used
         '<li>Barva: {{barva}}</li>' +
         '<li>Datum: {{datum}}</li>' +
         '</ul>',
-        'Opis: {{opis}}',
+        '<p>Opis: {{opis}}</p>',
         '</p>',
       '</div>',
       // '<div class="card-footer">',

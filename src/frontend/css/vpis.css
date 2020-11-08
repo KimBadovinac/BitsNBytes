@@ -10008,9 +10008,9 @@ hr.light {
     border-radius: 10rem;
 }
 
-.page-section {
-    padding: 8rem 0;
-}
+/*.page-section {*/
+/*    padding: 8rem 0;*/
+/*}*/
 
 #mainNav {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -10147,7 +10147,7 @@ header.masthead h1 {
 }
 
 .page-section {
-    background-color: rosybrown;
+    background-color: lightsteelblue;
     color: ghostwhite;
 }
 #first {

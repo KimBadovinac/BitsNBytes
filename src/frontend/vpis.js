@@ -169,4 +169,120 @@ function initMap() {
         console.log(document.getElementById("mapInput").value);
       });
 }
+<<<<<<< HEAD
 // END GOOGLE MAPS
+=======
+});
+// END GOOGLE MAPS
+
+// preset for animal cards:
+var animalCard = [ // todo: not used
+    '<div class="col-lg-4 col-md-6 mb-4">',
+    '<div class="card h-100">',
+    '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
+    '<div class="card-body">',
+    '<h4 class="card-title" style="text-align: center">',
+    '<a href="#">{{vrsta}}</a>',
+    '</h4>',
+    // '<h5>$24.99</h5>',
+    '<p class="card-text">',
+    '<ul>' +
+    '<li>Barva: {{barva}}</li>' +
+    '<li>Datum: {{datum}}</li>' +
+    '</ul>',
+    '<p>Opis: {{opis}}</p>',
+    '</p>',
+    '</div>',
+    // '<div class="card-footer">',
+    //   '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>',
+    // '</div>',
+    '</div>',
+    '</div>'
+].join("\n");
+
+$.getJSON('/api/getzivali', function(data) {
+    // lokacijski podatki uporabnika
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showAllCards)
+    } else {
+        showAllCards("")
+    }
+    function showPosition(position) {
+        // JSON result in `data` variable
+        document.getElementById('animalCards').innerHTML = "";
+        for (const i in data) {
+            const animal = data[i];
+
+            if (animal.lokacija == null || animal.lokacija == "") animal.lokacija = ["0,0"];
+            var koordinati = animal.lokacija.toString().split(',');
+            // preveri če je žival v radiju X kilometrov
+            if (getDistanceFromLatLonInKm(
+                position.coords.latitude, position.coords.longitude,
+                koordinati[0], koordinati[1]) > 10000) continue;
+
+            var panelObj = {
+                barva: animal.barva,
+                datum: animal.datum,
+                id: animal.id,
+                ime: animal.ime,
+                kontakt_mail: animal.kontakt_mail,
+                kontakt_tel: animal.kontakt_tel,
+                lokacija: animal.lokacija,
+                opis: animal.opis,
+                slika: animal.slika,
+                status: animal.status,
+                vrsta: animal.vrsta
+            };
+            //console.log(data);
+            // var template = document.getElementById('animalCards').innerHTML;
+            var rendered = Mustache.render(animalCard, panelObj);
+            document.getElementById('animalCards').innerHTML += rendered;
+            //console.log(rendered);
+        }
+    }
+
+    function showAllCards(err) {
+        // JSON result in `data` variable
+        document.getElementById('animalCards').innerHTML = "";
+        for (const i in data) {
+            const animal = data[i];
+
+            var panelObj = {
+                barva: animal.barva,
+                datum: animal.datum,
+                id: animal.id,
+                ime: animal.ime,
+                kontakt_mail: animal.kontakt_mail,
+                kontakt_tel: animal.kontakt_tel,
+                lokacija: animal.lokacija,
+                opis: animal.opis,
+                slika: animal.slika,
+                status: animal.status,
+                vrsta: animal.vrsta
+            };
+            //console.log(data);
+            var template = document.getElementById('animalCards').innerHTML;
+            var rendered = Mustache.render(animalCard, panelObj);
+            document.getElementById('animalCards').innerHTML += rendered;
+            //console.log(rendered);
+        }
+    }
+
+    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = deg2rad(lon2-lon1);
+        var a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+        ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d = R * c; // Distance in km
+        return d;
+    }
+    // pomožna funkcija za getDistanceFromLatLoninKm
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+})
