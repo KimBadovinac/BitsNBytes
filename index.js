@@ -115,7 +115,7 @@ app.get('/api/filterzivali', (req, res, next) => {
          " or kontakt_tel like '%"+iskalnabeseda+"%'";
     // console.log(sqlStavek);
     db.all(sqlStavek, (err, rows) => {
-        console.log(rows)
+        // console.log(rows)
         if (err) {
             throw err;
         }
@@ -134,6 +134,8 @@ app.get('/api/filterzivali', (req, res, next) => {
     });
 
 })
+
+
 
 // inserting
 app.post('/api/insertzival', (req, res) => {

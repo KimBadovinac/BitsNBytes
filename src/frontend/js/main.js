@@ -1,13 +1,13 @@
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").style.padding = "30px 10px";
-        $('.navbar-collapse').collapse('hide');
-    } else {
-        document.getElementById("navbar").style.padding = "80px 10px";
-        $('.navbar-collapse').collapse('show');
-    }
+    // if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    //     document.getElementById("navbar").style.padding = "30px 10px";
+    //     $('.navbar-collapse').collapse('hide');
+    // } else {
+    //     document.getElementById("navbar").style.padding = "80px 10px";
+    //     $('.navbar-collapse').collapse('show');
+    // }
 }
 
 // GOOGLE MAPS
@@ -95,7 +95,7 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
 ////////////// load animals from db and generate cards for first page //////////////////
 
 // preset for animal cards:
-var animalCard = [ // todo: not used
+var animalCard = [
   '<div class="col-lg-4 col-md-6 mb-4">',
     '<div class="card h-100">',
       '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
@@ -119,6 +119,9 @@ var animalCard = [ // todo: not used
   '</div>'
 ].join("\n");
 
+
+
+
 $.getJSON('/api/getzivali', function(data) {
     // lokacijski podatki uporabnika
       if (navigator.geolocation) {
@@ -139,19 +142,7 @@ $.getJSON('/api/getzivali', function(data) {
               position.coords.latitude, position.coords.longitude,
               koordinati[0], koordinati[1]) > 10000) continue;
 
-          var panelObj = {
-              barva: animal.barva,
-              datum: animal.datum,
-              id: animal.id,
-              ime: animal.ime,
-              kontakt_mail: animal.kontakt_mail,
-              kontakt_tel: animal.kontakt_tel,
-              lokacija: animal.lokacija,
-              opis: animal.opis,
-              slika: animal.slika,
-              status: animal.status,
-              vrsta: animal.vrsta
-          };
+
           //console.log(data);
           // var template = document.getElementById('animalCards').innerHTML;
           var rendered = Mustache.render(animalCard, panelObj);
@@ -204,4 +195,53 @@ $.getJSON('/api/getzivali', function(data) {
     function deg2rad(deg) {
       return deg * (Math.PI/180)
     }
-})
+});
+
+$('#filter-submit-btn').click(function(){
+
+});
+// $("#filter-form").;
+
+$("#filter-submit-btn").click(function(event){
+  event.preventDefault();
+  makeAjaxRequest();
+});
+function makeAjaxRequest() {
+    console.log($('#filter-form').serialize());
+    $.ajax({
+        type: 'GET',
+        url: '/api/filterzivali?',
+        data: $('#filter-form').serializeArray(),
+        dataType: 'json',
+        success: function(data){
+            // console.log(data);
+
+            document.getElementById('animalCards').innerHTML = "";
+            for (const i in data) {
+                const animal = data[i];
+                // console.log(animal);
+
+                var panelObj = {
+                    barva: animal.barva,
+                    datum: animal.datum,
+                    id: animal.id,
+                    ime: animal.ime,
+                    kontakt_mail: animal.kontakt_mail,
+                    kontakt_tel: animal.kontakt_tel,
+                    lokacija: animal.lokacija,
+                    opis: animal.opis,
+                    slika: animal.slika,
+                    status: animal.status,
+                    vrsta: animal.vrsta
+                };
+                //console.log(data);
+                var template = document.getElementById('animalCards').innerHTML;
+                var rendered = Mustache.render(animalCard, panelObj);
+                document.getElementById('animalCards').innerHTML += rendered;
+                //console.log(rendered);
+            }
+
+
+        }
+    });
+}
