@@ -92,18 +92,30 @@ app.get('/api/filterzivali', (req, res, next) => {
     //SELECT * FROM Zivali WHERE (Status = 0 AND Vrsta = "pes") AND (Barva = "bela" AND Opis = "vsebujeiskalnobesedo");
 
     // get rows
+    if (!barva) barva = "";
     var color = "";
     console.log(color);
+    let i = 0;
     barva.split(",").forEach((c) => {
-        color += " and color = '"+c+"'";
+        if (i === 0) {
+            color += " and barva like '%"+c+"%'";
+        }
+        else {
+            color += " or barva like '%"+c+"%'";
+        }
+        i++;
     })
     sqlStavek = "SELECT * FROM Zivali WHERE "+
          (status === "vsi" ? " 1=1" : " status = '"+status+"'")+
          (vrsta === "vsi"  ? " and 1=1" : " and vrsta = '"+vrsta+"'")+
-         (barva === "vsi" ? " and 1=1" : " and 1=1")+
-         (status === "vsi" ? " and 1=1" : " and 1=1");
-    console.log(sqlStavek);
+         color+
+         " and opis like '%"+iskalnabeseda+"%'"+
+         " or ime like '%"+iskalnabeseda+"%'"+
+         " or kontakt_mail like '%"+iskalnabeseda+"%'"+
+         " or kontakt_tel like '%"+iskalnabeseda+"%'";
+    // console.log(sqlStavek);
     db.all(sqlStavek, (err, rows) => {
+        console.log(rows)
         if (err) {
             throw err;
         }
