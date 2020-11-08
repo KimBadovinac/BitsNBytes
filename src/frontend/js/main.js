@@ -88,13 +88,12 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
 ////////////// load animals from db and generate cards for first page //////////////////
 
 // preset for animal cards:
-var animalCard = [ // todo: not used
+var animalCard = [
   '<div class="col-lg-4 col-md-6 mb-4">',
     '<div class="card h-100">',
-      '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
+      '<img class="card-img-top" src="{{slika}}" alt="">',
       '<div class="card-body">',
-        '<h4 class="card-title" style="text-align: center">',
-          '<a href="#">{{vrsta}}</a>',
+        '<h4 class="card-title" style="text-align: center">{{vrsta}}</a>',
         '</h4>',
         // '<h5>$24.99</h5>',
         '<p class="card-text">',
@@ -102,15 +101,21 @@ var animalCard = [ // todo: not used
         '<li>Barva: {{barva}}</li>' +
         '<li>Datum: {{datum}}</li>' +
         '</ul>',
-        '<p>Opis: {{opis}}</p>',
+        '<p style="text-align: center">{{opis}}</p>',
         '</p>',
+    '<ul class="list-group list-group-flush">',
+    '<li class="list-group-item"></li>',
+        '<li class="list-group-item">Kontaktni e-naslov: {{kontakt_mail}}</li>',
+        '<li class="list-group-item">Kontaktni telefon: {{kontakt_tel}}</li>',
+    '</ul>',
       '</div>',
       // '<div class="card-footer">',
       //   '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>',
       // '</div>',
     '</div>',
-  '</div>'
+  '</div>',
 ].join("\n");
+
 
 $.getJSON('/api/getzivali', function(data) {
     // lokacijski podatki uporabnika
@@ -132,19 +137,7 @@ $.getJSON('/api/getzivali', function(data) {
               position.coords.latitude, position.coords.longitude,
               koordinati[0], koordinati[1]) > 10000) continue;
 
-          var panelObj = {
-              barva: animal.barva,
-              datum: animal.datum,
-              id: animal.id,
-              ime: animal.ime,
-              kontakt_mail: animal.kontakt_mail,
-              kontakt_tel: animal.kontakt_tel,
-              lokacija: animal.lokacija,
-              opis: animal.opis,
-              slika: animal.slika,
-              status: animal.status,
-              vrsta: animal.vrsta
-          };
+
           //console.log(data);
           // var template = document.getElementById('animalCards').innerHTML;
           var rendered = Mustache.render(animalCard, panelObj);
@@ -197,4 +190,53 @@ $.getJSON('/api/getzivali', function(data) {
     function deg2rad(deg) {
       return deg * (Math.PI/180)
     }
-})
+});
+
+$('#filter-submit-btn').click(function(){
+
+});
+// $("#filter-form").;
+
+$("#filter-submit-btn").click(function(event){
+  event.preventDefault();
+  makeAjaxRequest();
+});
+function makeAjaxRequest() {
+    console.log($('#filter-form').serialize());
+    $.ajax({
+        type: 'GET',
+        url: '/api/filterzivali?',
+        data: $('#filter-form').serializeArray(),
+        dataType: 'json',
+        success: function(data){
+            // console.log(data);
+
+            document.getElementById('animalCards').innerHTML = "";
+            for (const i in data) {
+                const animal = data[i];
+                // console.log(animal);
+
+                var panelObj = {
+                    barva: animal.barva,
+                    datum: animal.datum,
+                    id: animal.id,
+                    ime: animal.ime,
+                    kontakt_mail: animal.kontakt_mail,
+                    kontakt_tel: animal.kontakt_tel,
+                    lokacija: animal.lokacija,
+                    opis: animal.opis,
+                    slika: animal.slika,
+                    status: animal.status,
+                    vrsta: animal.vrsta
+                };
+                //console.log(data);
+                var template = document.getElementById('animalCards').innerHTML;
+                var rendered = Mustache.render(animalCard, panelObj);
+                document.getElementById('animalCards').innerHTML += rendered;
+                //console.log(rendered);
+            }
+
+
+        }
+    });
+}
