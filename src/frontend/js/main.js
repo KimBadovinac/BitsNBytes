@@ -103,7 +103,7 @@ var animalCard = [ // todo: not used
         '<h4 class="card-title">',
           '<a href="#">{{ime}}</a>',
         '</h4>',
-        '<h5>$24.99</h5>',
+        // '<h5>$24.99</h5>',
         '<p class="card-text">',
         '<ul>' +
         '<li>Barva: {{barva}}</li>' +
@@ -112,9 +112,9 @@ var animalCard = [ // todo: not used
         'Opis: {{opis}}',
         '</p>',
       '</div>',
-      '<div class="card-footer">',
-        '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>',
-      '</div>',
+      // '<div class="card-footer">',
+      //   '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>',
+      // '</div>',
     '</div>',
   '</div>'
 ].join("\n");
@@ -153,7 +153,7 @@ $.getJSON('/api/getzivali', function(data) {
               vrsta: animal.vrsta
           };
           //console.log(data);
-          var template = document.getElementById('animalCards').innerHTML;
+          // var template = document.getElementById('animalCards').innerHTML;
           var rendered = Mustache.render(animalCard, panelObj);
           document.getElementById('animalCards').innerHTML += rendered;
           //console.log(rendered);
