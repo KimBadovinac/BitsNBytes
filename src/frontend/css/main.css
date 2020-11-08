@@ -10,8 +10,8 @@ body {
 }
 #navbar {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 80px 10px;
+  background-color: steelblue !important;
+  padding: 20px 10px;
   transition: 0.4s;
   position: fixed;
   width: 100%;

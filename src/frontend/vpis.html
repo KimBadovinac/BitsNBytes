@@ -25,23 +25,23 @@
 <!--ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status-->
 
 
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+
 <!--First-->
-<form action="/api/insertzival" method="POST" role="form">
-    <section class="page-section" id="first">
-        <div class="container">
+<form action="/api/insertzival" method="post" role="form">
+    <section class="page-section " id="status">
+        <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
+                <div class="col-lg-8 text-center">
                     <h2 class="text-center mt-0">Ste našli izgubljeno žival ali jo iščete?</h2>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <label for="nasel">NAŠEL</label>
-                    <input type="button" id="nasel" class="btn btn-light btn-nasel-iscem" name="status" href="#second">
-                </div>
-                <div class="col-lg-4 text-center">
-                    <label for="iscem">IŠČEM</label>
-                    <input type="button" id="iscem" class="btn btn-light btn-nasel-iscem" name="status" href="#second">
+                        <input type="radio" name="status" id="nasel" value="0">
+                        <label for='nasel'>Našel</label>
+                        <input type="radio" name="status" id="iscem" value="1">
+                        <label for='iscem'>Iščem</label>
                 </div>
             </div>
+            <div class="down_icon d-flex justify-content-center"><a class="btn btn-icon" href="#second"><i style="color:ghostwhite; align-self:auto" class="fas fa-arrow-down fa-6x"></i></a></div>
         </div>
     </section>
     <!--Second-->
@@ -53,7 +53,7 @@
                     <img src="" alt="zemljevid">
                 </div>
             </div>
-            <a class="btn btn-icon" href="#third"><i class="fas fa-arrow-down fa-6x"></i></a>
+            <div class="down_icon"><a class="btn btn-icon" href="#third"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
         </div>
     </section>
     <section class="page-section" id="third">
@@ -62,8 +62,8 @@
                 <div class="col-lg-6 mx-auto">
 
                     <!-- Upload image input-->
-                    <div id="image-upload-div" class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                        <input id="upload" name="slika" type="file" onchange="readURL(this);" class="form-control border-0">
+                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
                         <label id="upload-label" for="upload" class="font-weight-light text-muted">Izberite fotografijo živali.</label>
                         <div class="input-group-append">
     <!--                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i></label>-->
@@ -76,62 +76,84 @@
                 </div>
             </div>
 
-            <a class="btn btn-icon" href="#vrsta"><i class="fas fa-arrow-down fa-6x"></i></a>
+            <a class="btn btn-icon" href="#vrsta"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a>
         </div>
     </section>
     <section class="page-section" id="vrsta">
         <div class="container">
             <h2 class="text-center mt-0">Vrsta živali</h2>
-            <a class="btn btn-transparent" href="#barva">Pes</a>
-            <a class="btn btn-transparent" href="#barva">Mačka</a>
-            <a class="btn btn-transparent" href="#barva">Drugo</a>
+            <input class="radio" type="radio" name="vrsta" id="pes" value="pes">
+            <label for="pes">Pes</label>
+            <input class="radio" type="radio" name="vrsta" id="macka" value="mačka">
+            <label for="macka">Mačka</label>
+            <input class="radio" type="radio" name="vrsta" id="drugo" value="drugo">
+            <label for="drugo">Drugo</label>
         </div>
+        <div class="down_icon"><a class="btn btn-icon" href="#barva"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
     </section>
     <section class="page-section" id="barva">
         <div class="container">
             <h2 class="text-center mt-0">Barva živali</h2>
-            <a class="btn btn-transparent">Črna</a>
-            <a class="btn btn-transparent">Rjava</a>
-            <a class="btn btn-transparent">Bela</a>
-            <a class="btn btn-transparent">Siva</a>
-            <a class="btn btn-transparent">Drugo</a>
+                <input class="radio" type="checkbox" name="barva" id="crna" value="crna">
+                <label for="crna">Črna</label>
+                <input class="radio" type="checkbox" name="barva" id="rjava" value="rjava">
+                <label for="rjava">Rjava</label>
+    <!--            <a class="btn btn-transparent">Črna</a>-->
+    <!--            <a class="btn btn-transparent">Rjava</a>-->
+                <input class="radio" type="checkbox" name="barva" id="bela" value="bela">
+                <label for="bela">Bela</label>
+                <input class="radio" type="checkbox" name="barva" id="siva" value="siva">
+                <label for="siva">Siva</label>
+                <input class="radio" type="checkbox" name="barva" id="druga" value="druga">
+                <label for="druga">Druga</label>
+<!--                <a class="btn btn-transparent">Bela</a>-->
+<!--                <a class="btn btn-transparent">Siva</a>-->
+<!--                <a class="btn btn-transparent">Drugo</a>-->
+            </div>
         </div>
-        <a class="btn btn-icon" href="#datum"><i class="fas fa-arrow-down fa-6x"></i></a>
+        <div class="down_icon"><a class="btn btn-icon" href="#datum"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
     </section>
     <section class="page-section" id="datum">
-        <div class="container">
+        <div class="container justify-content-center align-content-center">
             <h2 class="text-center mt-0">Kdaj se je izgubila/našla?</h2>
     <!--        <div id="date-picker" class="md-form md-outline input-with-post-icon datepicker">-->
-            <input required="" type="date" id="date" class="form-control" href="#opis">
+            <div class="col-lg-4 container-fluid d-flex align-content-center">
+            <input class="input-group mb-3 px-2 py-2 rounded-pill bg-white" required="" type="date" id="date" name="datum">
+            </div>
         </div>
-        <a class="btn btn-icon" href="#opis"><i class="fas fa-arrow-down fa-6x"></i></a>
+        <div class="down_icon"><a class="btn btn-icon" href="#opis"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
         <!--        </div>-->
     </section>
     <section class="page-section" id="opis">
         <div class="container">
             <h2 class="text-center mt-0">Dodatne lastnosti, opombe, opis...</h2>
-            <input required="" type="text" id="opombe" name="opis" class="form-control">
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="opombe" name="opis">
         </div>
         <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
-        <a class="btn btn-icon" href="#kontakt"><i class="fas fa-arrow-down fa-6x"></i></a>
+        <div class="down_icon"><a class="btn btn-icon" href="#kontakt"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
     </section>
     <section class="page-section" id="kontakt">
         <div class="container">
             <h2 class="text-center mt-0">Kontakt</h2>
-            <input required="" type="text" id="mail" class="form-control">
-            <input required="" type="text" id="telefon" class="form-control">
+            <div class=""></div>
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="mail" name="kontakt_mail" placeholder="E-pošta">
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="telefon" name="kontakt_tel" placeholder="Telefonska številka">
         </div>
         <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
-        <a class="btn btn-icon" href="#najblizje"><i class="fas fa-arrow-down fa-6x"></i></a>
+<!--        <div class="down_icon"><a class="btn btn-icon" href="#najblizje"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>-->
+        <div><button type="submit" style="color:grey" formmethod="post" class="btn btn-lg btn-light rounded-pill bg-white">OBJAVI</button></div>
+        <div class="down_icon"><a class="btn btn-icon" href="index.html"><i style="color:ghostwhite" class="fas fa-arrow-left fa-6x"></i></a></div>
     </section>
-    <section class="page-section" id="najblizje">
-        <div class="container">
-            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>
-            <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>
-        </div>
-        <!--        s klikom na tole se objavi nova zadeva v bazo-->
-        <button type="submit" formmethod="post" class="btn btn-transparent" >Ne, objavi.</button>
-    </section>
+
+
+<!--    <section class="page-section" id="najblizje">-->
+<!--        <div class="container">-->
+<!--            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>-->
+<!--            <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;        s klikom na tole se objavi nova zadeva v bazo&ndash;&gt;-->
+<!--        <button type="submit" formmethod="post" class="btn btn-transparent" href="index.html">Ne, objavi.</button>-->
+<!--    </section>-->
 
 </form>
 

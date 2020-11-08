@@ -123,8 +123,8 @@ app.post('/api/insertzival', (req, res) => {
     var datum = req.body.datum;
     var kontakt_mail = req.body.kontakt_mail;
     var kontakt_tel = req.body.kontakt_tel;
-    var opis = req.body.opis;
     var status = req.body.status;
+
 
     // open db conn
     let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
