@@ -33,7 +33,7 @@
 
 <!--First-->
 <form action="/api/insertzival" method="post" role="form">
-    <section class="page-section " id="status">
+    <section class="page-section d-flex align-items-center" style="height: 100vh" id="status">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -57,10 +57,9 @@
             </div>
             <!-- Maps Content -->
             <div class="row h-100" id="mapRow">
-
                     <div id="map" class="w-100 h-100" style="height: 500 px"></div>
-
             </div>
+            <input class="d-none" type="text" id="mapInput" name="map">
             <!-- /.row -->
             <div class="down_icon"><a class="btn btn-icon" href="#third"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
         </div>
@@ -151,11 +150,41 @@
         </div>
         <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
 <!--        <div class="down_icon"><a class="btn btn-icon" href="#najblizje"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>-->
-        <div><button type="submit" style="color:grey" formmethod="post" class="btn btn-lg btn-light rounded-pill bg-white">OBJAVI</button></div>
-        <div class="down_icon"><a class="btn btn-icon" href="index.html"><i style="color:ghostwhite" class="fas fa-arrow-left fa-6x"></i></a></div>
+        <div><button type="submit" style="color:grey" formmethod="post" class="btn btn-icon"><i style="color:ghostwhite" class="fas fa-check fa-6x"></i></button></div>
+
+<!--        <div class="alert alert-success" role="alert">-->
+<!--            This is a success alert—check it out!-->
+<!--        </div>-->
+
+<!--        <div class="down_icon"><a class="btn btn-icon" href="index.html"><i style="color:ghostwhite" class="fas fa-check fa-6x"></i></a></div>-->
     </section>
 
+    <div class="row" id="animalCards">
+        <div class="container-fluid">  <!-- start animal cards Ptemplate -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Item One</a>
+                        </h4>
+                        <p class="card-text">
+                        <ul>
+                            <li>
+                                Barva: {{barva}}
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
+        </div>  <!-- end animal cards template -->
+
+    </div>
+    <!-- /.row -->
+
+    <!-- /.row -->
 <!--    <section class="page-section" id="najblizje">-->
 <!--        <div class="container">-->
 <!--            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>-->
@@ -178,5 +207,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <!-- Core theme JS-->
 <script src="vpis.js"></script>
+<script type="text/javascript"> initMap(); </script>
 </body>
 </html>
