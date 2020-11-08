@@ -4,9 +4,8 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 const frontendPath = __dirname + '/src/frontend';
 app.use(express.static(frontendPath));
@@ -71,15 +70,54 @@ app.get('/api/getzivali', (req, res, next) => {
     });
 });
 
+//work in progress...
+//Retrieving Filtered Rows
+app.get('/api/filterzivali', (req, res, next) => {
+    var status = req.body.status;
+    var vrsta = req.body.vrsta;
+    var barva = req.body.barva;
+    var iskalnabeseda = req.body.iskalnabeseda;
+
+    // open db conn
+    let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
+        if (err) {
+            console.error(err.message);
+        }
+        // console.log('Connected to the database.');
+    });
+
+    // get data
+    //SELECT * FROM Zivali WHERE (Status = 0 AND Vrsta = "pes") AND (Barva = "bela" AND Opis = "vsebujeiskalnobesedo");
+
+    // get rows
+    db.all("SELECT * FROM Zivali WHERE Status = 0", [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        // rows.forEach((row) => {
+        //   console.log(row);
+        // });
+        res.send(JSON.stringify(rows, null, 2));
+    });
+
+    // close db conn
+    db.close((err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        // console.log('Close the database connection.');
+    });
+
+})
 
 // inserting
 app.post('/api/insertzival', (req, res) => {
     var opis = req.body.opis;
-    console.log(opis)
-    var id = req.body.id;
+    // console.log(opis);
     var ime = req.body.ime;
     var vrsta = req.body.vrsta;
     var slika = req.body.slika;
+    // console.log(slika);
     var barva = req.body.barva;
     var lokacija = req.body.lokacija;
     var datum = req.body.datum;
@@ -97,9 +135,9 @@ app.post('/api/insertzival', (req, res) => {
     });
 
     // insert data
-    let data = [id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status]
-    db.run(`INSERT INTO Zivali(id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status) \
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, data,
+    let data = [ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status]
+    db.run(`INSERT INTO Zivali(ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status) \
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, data,
         function(err) {
             if (err) {
               return console.log(err.message);

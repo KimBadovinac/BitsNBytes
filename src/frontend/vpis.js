@@ -57,6 +57,43 @@
 
 })(jQuery); // End of use strict
 
+
+
+// // source: https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript/20285053#20285053
+// function toDataURL(src, callback, outputFormat) {
+//   var img = new Image();
+//   img.crossOrigin = 'Anonymous';
+//   img.onload = function() {
+//     var canvas = document.createElement('CANVAS');
+//     var ctx = canvas.getContext('2d');
+//     var dataURL;
+//     canvas.height = this.naturalHeight;
+//     canvas.width = this.naturalWidth;
+//     ctx.drawImage(this, 0, 0);
+//     dataURL = canvas.toDataURL(outputFormat);
+//     callback(dataURL);
+//   };
+//   img.src = src;
+//   if (img.complete || img.complete === undefined) {
+//     img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+//     img.src = src;
+//   }
+//
+//   var imageData = canvas.toDataURL('image/png');
+//   document.getElementsByName("myHiddenField")[0].setAttribute("value", imageData);
+//
+// }
+//
+// document.getElementById("imageUploaded").addEventListener("click", function() {
+//     // todo: call when uploading an image to convert it to base64 encoded string
+//     toDataURL(
+//       document.getElementById("demo").innerHTML,
+//       function(dataUrl) {
+//         console.log('RESULT:', dataUrl)
+//       }
+//     );
+// });
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -64,6 +101,9 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#imageResult')
                 .attr('src', e.target.result);
+            document.getElementsByName("slika")[0].setAttribute("value", e.target.result);
+            document.getElementsByName("slika")[0].setAttribute("type", "hidden");
+            $('#image-upload-div').hide();
         };
         reader.readAsDataURL(input.files[0]);
     }
