@@ -4,6 +4,8 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 const frontendPath = __dirname + '/src/frontend';
 app.use(express.static(frontendPath));
@@ -71,10 +73,12 @@ app.get('/api/getzivali', (req, res, next) => {
 
 // inserting
 app.post('/api/insertzival', (req, res) => {
-    var id = req.body.id;
+    var opis = req.body.opis;
+    // console.log(opis);
     var ime = req.body.ime;
     var vrsta = req.body.vrsta;
     var slika = req.body.slika;
+    // console.log(slika);
     var barva = req.body.barva;
     var lokacija = req.body.lokacija;
     var datum = req.body.datum;
@@ -92,9 +96,9 @@ app.post('/api/insertzival', (req, res) => {
     });
 
     // insert data
-    let data = [id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status]
-    db.run(`INSERT INTO Zivali(id, ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status) \
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, data,
+    let data = [ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status]
+    db.run(`INSERT INTO Zivali(ime, vrsta, slika, barva, lokacija, datum, kontakt_mail, kontakt_tel, opis, status) \
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, data,
         function(err) {
             if (err) {
               return console.log(err.message);

@@ -81,35 +81,6 @@ for (i = 0; i < locations.length; i++) {
 // END GOOGLE MAPS
 
 
-// source: https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript/20285053#20285053
-function toDataURL(src, callback, outputFormat) {
-  var img = new Image();
-  img.crossOrigin = 'Anonymous';
-  img.onload = function() {
-    var canvas = document.createElement('CANVAS');
-    var ctx = canvas.getContext('2d');
-    var dataURL;
-    canvas.height = this.naturalHeight;
-    canvas.width = this.naturalWidth;
-    ctx.drawImage(this, 0, 0);
-    dataURL = canvas.toDataURL(outputFormat);
-    callback(dataURL);
-  };
-  img.src = src;
-  if (img.complete || img.complete === undefined) {
-    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-    img.src = src;
-  }
-}
-
-// todo: call when uploading an image to convert it to base64 encoded string
-toDataURL(
-  'https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0',
-  function(dataUrl) {
-    console.log('RESULT:', dataUrl)
-  }
-)
-
 
 ////////////// load animals from db and generate cards for first page //////////////////
 
