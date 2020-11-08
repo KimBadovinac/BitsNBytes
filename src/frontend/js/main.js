@@ -98,10 +98,9 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
 var animalCard = [
   '<div class="col-lg-4 col-md-6 mb-4">',
     '<div class="card h-100">',
-      '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
+      '<img class="card-img-top" src="{{slika}}" alt="">',
       '<div class="card-body">',
-        '<h4 class="card-title" style="text-align: center">',
-          '<a href="#">{{vrsta}}</a>',
+        '<h4 class="card-title" style="text-align: center">{{vrsta}}</a>',
         '</h4>',
         // '<h5>$24.99</h5>',
         '<p class="card-text">',
@@ -109,17 +108,20 @@ var animalCard = [
         '<li>Barva: {{barva}}</li>' +
         '<li>Datum: {{datum}}</li>' +
         '</ul>',
-        '<p>Opis: {{opis}}</p>',
+        '<p style="text-align: center">{{opis}}</p>',
         '</p>',
+    '<ul class="list-group list-group-flush">',
+    '<li class="list-group-item"></li>',
+        '<li class="list-group-item">Kontaktni e-naslov: {{kontakt_mail}}</li>',
+        '<li class="list-group-item">Kontaktni telefon: {{kontakt_tel}}</li>',
+    '</ul>',
       '</div>',
       // '<div class="card-footer">',
       //   '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>',
       // '</div>',
     '</div>',
-  '</div>'
+  '</div>',
 ].join("\n");
-
-
 
 
 $.getJSON('/api/getzivali', function(data) {
