@@ -66,7 +66,7 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
 
   var contentString = "<h1>" + rezultatAPIklica[i].ime + "</h1>" +
                       "<p>" + rezultatAPIklica[i].vrsta + "</p>" +
-                      '<img class="h-100 w-100" src="' + rezultatAPIklica[i].slika + '">';
+                      '<img  height="100" src="' + rezultatAPIklica[i].slika + '">';
 
   var boxText = document.createElement("div");
     boxText.id = rezultatAPIklica[i].id;

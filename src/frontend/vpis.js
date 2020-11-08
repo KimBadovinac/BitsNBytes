@@ -147,7 +147,7 @@ function initMap() {
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
-    content: "Click the map to get Lat/Lng!",
+    content: "Za lokacijo pritisni na zemljevid!",
     position: myLatlng,
   });
   infoWindow.open(map);
@@ -169,10 +169,6 @@ function initMap() {
         console.log(document.getElementById("mapInput").value);
       });
 }
-<<<<<<< HEAD
-// END GOOGLE MAPS
-=======
-});
 // END GOOGLE MAPS
 
 // preset for animal cards:
@@ -200,6 +196,7 @@ var animalCard = [ // todo: not used
     '</div>'
 ].join("\n");
 
+/*
 $.getJSON('/api/getzivali', function(data) {
     // lokacijski podatki uporabnika
     if (navigator.geolocation) {
@@ -285,4 +282,4 @@ $.getJSON('/api/getzivali', function(data) {
     function deg2rad(deg) {
         return deg * (Math.PI/180)
     }
-})
+})*/
