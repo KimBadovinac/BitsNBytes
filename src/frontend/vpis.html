@@ -35,14 +35,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <h2 class="text-center mt-0">Ste našli izgubljeno žival ali jo iščete?</h2>
-                    <div class="btn btn-light">
                         <input type="radio" name="status" id="nasel" value="0">
                         <label for='nasel'>Našel</label>
-                    </div>
-                    <div class="btn btn-light">
                         <input type="radio" name="status" id="iscem" value="1">
                         <label for='iscem'>Iščem</label>
-                    </div>
                 </div>
             </div>
             <div class="down_icon d-flex justify-content-center"><a class="btn btn-icon" href="#second"><i style="color:ghostwhite; align-self:auto" class="fas fa-arrow-down fa-6x"></i></a></div>
@@ -119,11 +115,12 @@
         <div class="down_icon"><a class="btn btn-icon" href="#datum"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
     </section>
     <section class="page-section" id="datum">
-        <div class="container">
+        <div class="container justify-content-center align-content-center">
             <h2 class="text-center mt-0">Kdaj se je izgubila/našla?</h2>
     <!--        <div id="date-picker" class="md-form md-outline input-with-post-icon datepicker">-->
-            <input required="" type="date" id="date" name="datum">
-            <label for="date">Datum</label>
+            <div class="col-lg-4">
+            <input class="input-group mb-3 px-2 py-2 rounded-pill bg-white" required="" type="date" id="date" name="datum">
+            </div>
         </div>
         <div class="down_icon"><a class="btn btn-icon" href="#opis"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
         <!--        </div>-->
@@ -131,8 +128,7 @@
     <section class="page-section" id="opis">
         <div class="container">
             <h2 class="text-center mt-0">Dodatne lastnosti, opombe, opis...</h2>
-            <input class="form-text" type="text" id="opombe" name="opis">
-            <label for="opombe">Opis</label>
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="opombe" name="opis">
         </div>
         <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
         <div class="down_icon"><a class="btn btn-icon" href="#kontakt"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
@@ -140,22 +136,22 @@
     <section class="page-section" id="kontakt">
         <div class="container">
             <h2 class="text-center mt-0">Kontakt</h2>
-            <input class="form-text" type="text" id="mail" name="kontakt_mail">
-            <label for="mail">Mail</label>
-            <input class="form-text" type="text" id="telefon" name="kontakt_tel">
-            <label for="telefon">Telefon</label>
+            <div class=""></div>
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="mail" name="kontakt_mail" placeholder="E-pošta">
+            <input class="form-control input-group mb-3 px-2 py-2 rounded-pill bg-white" type="text" id="telefon" name="kontakt_tel" placeholder="Telefonska številka">
         </div>
         <!--        s klikom na tole se preverijo zgornje lastnosti s tistimi v bazi: -->
-        <div class="down_icon"><a class="btn btn-icon" href="#najblizje"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
+<!--        <div class="down_icon"><a class="btn btn-icon" href="#najblizje"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>-->
     </section>
-    <section class="page-section" id="najblizje">
-        <div class="container">
-            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>
-            <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>
-        </div>
-        <!--        s klikom na tole se objavi nova zadeva v bazo-->
-        <button type="submit" formmethod="post" class="btn btn-transparent" href="index.html">Ne, objavi.</button>
-    </section>
+    <button type="submit" style="color:ghostwhite" formmethod="post" class="btn btn-lg btn-light" href="index.html">OBJAVI</button>
+<!--    <section class="page-section" id="najblizje">-->
+<!--        <div class="container">-->
+<!--            <h2 class="text-center mt-0">Najbolj podobni rezultati glede na poslane atribute:</h2>-->
+<!--            <p class="text-white-50 mb-4">Je kakšna izmed zgornjih živali?</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;        s klikom na tole se objavi nova zadeva v bazo&ndash;&gt;-->
+<!--        <button type="submit" formmethod="post" class="btn btn-transparent" href="index.html">Ne, objavi.</button>-->
+<!--    </section>-->
 
 </form>
 
