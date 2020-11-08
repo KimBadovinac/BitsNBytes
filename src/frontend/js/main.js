@@ -137,7 +137,7 @@ $.getJSON('/api/getzivali', function(data) {
           // preveri če je žival v radiju X kilometrov
           if (getDistanceFromLatLonInKm(
               position.coords.latitude, position.coords.longitude,
-              koordinati[0], koordinati[1]) > 10) continue;
+              koordinati[0], koordinati[1]) > 10000) continue;
 
           var panelObj = {
               barva: animal.barva,

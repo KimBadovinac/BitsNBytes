@@ -28,6 +28,8 @@
 
     // Collapse Navbar
     var navbarCollapse = function () {
+        var navbar = $("#mainNav");
+        if (navbar == null || navbar.offset() == null) return;
         if ($("#mainNav").offset().top > 100) {
             $("#mainNav").addClass("navbar-scrolled");
         } else {
@@ -128,5 +130,65 @@ function showFileName( event ) {
     infoArea.textContent = 'File name: ' + fileName;
 }
 
-// Data Picker Initialization
-$('.datepicker').datepicker();
+// GOOGLE MAPS
+$.getJSON('/api/getzivali', function(data) {
+   var rezultatAPIklica = data;
+
+var koordinati;
+if (rezultatAPIklica[0].lokacija != null){
+    koordinati = rezultatAPIklica[0].lokacija.split(',');
+} else {
+    koordinati = [0,0];
+}
+
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 16,
+  center: new google.maps.LatLng(koordinati[0], koordinati[0]),
+  mapTypeId: google.maps.MapTypeId.TERRAIN
+});
+
+var infowindow = new google.maps.InfoWindow();
+
+var marker, i;
+
+var boxList = [];
+
+for (i = 0; i < rezultatAPIklica.length; i++) {
+  //console.log(rezultatAPIklica[i].lokacija);
+  if (rezultatAPIklica[i].lokacija != null){
+    koordinati = rezultatAPIklica[i].lokacija.split(',');
+  } else {
+    koordinati = [0,0];
+  }
+
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(koordinati[0], koordinati[1]),
+    map: map,
+    id: rezultatAPIklica[i].id
+  });
+
+  var contentString = "<h1>" + rezultatAPIklica[i].ime + "</h1>" +
+                      "<p>" + rezultatAPIklica[i].vrsta + "</p>" +
+                      '<img class="h-100 w-100" src="' + rezultatAPIklica[i].slika + '">';
+
+  var boxText = document.createElement("div");
+    boxText.id = rezultatAPIklica[i].id;
+    boxText.className = "boxText-" + rezultatAPIklica[i].id;
+    boxText.innerHTML = contentString;
+    boxList.push(boxText);
+
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      infowindow.setContent(boxList[i]);
+      infowindow.open(map, marker);
+    }
+  })(marker, i));
+
+  google.maps.event.addDomListener(boxList[i],'click',(function(marker, i) {
+                          return function() {
+                            alert('clicked ' + rezultatAPIklica[i].ime)
+                          }
+                        })(marker, i));
+}
+});
+// END GOOGLE MAPS
