@@ -73,10 +73,12 @@ app.get('/api/getzivali', (req, res, next) => {
 //work in progress...
 //Retrieving Filtered Rows
 app.get('/api/filterzivali', (req, res, next) => {
-    var status = req.body.status;
-    var vrsta = req.body.vrsta;
-    var barva = req.body.barva;
-    var iskalnabeseda = req.body.iskalnabeseda;
+    var status = req.query.status;  // vsi izgubljeni najdeni
+    var vrsta = req.query.vrsta;    // vsi pes macka drugo
+    var barva = req.query.barva;    // crna bela ...
+    var iskalnabeseda = req.query.iskalnabeseda; // text to search in every field
+
+    console.log(status+" "+vrsta+" "+barva+" "+iskalnabeseda);
 
     // open db conn
     let db = new sqlite3.Database('./src/frontend/media/db.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -90,7 +92,18 @@ app.get('/api/filterzivali', (req, res, next) => {
     //SELECT * FROM Zivali WHERE (Status = 0 AND Vrsta = "pes") AND (Barva = "bela" AND Opis = "vsebujeiskalnobesedo");
 
     // get rows
-    db.all("SELECT * FROM Zivali WHERE Status = 0", [], (err, rows) => {
+    var color = "";
+    console.log(color);
+    barva.split(",").forEach((c) => {
+        color += " and color = '"+c+"'";
+    })
+    sqlStavek = "SELECT * FROM Zivali WHERE "+
+         (status === "vsi" ? " 1=1" : " status = '"+status+"'")+
+         (vrsta === "vsi"  ? " and 1=1" : " and vrsta = '"+vrsta+"'")+
+         (barva === "vsi" ? " and 1=1" : " and 1=1")+
+         (status === "vsi" ? " and 1=1" : " and 1=1");
+    console.log(sqlStavek);
+    db.all(sqlStavek, (err, rows) => {
         if (err) {
             throw err;
         }
@@ -144,6 +157,7 @@ app.post('/api/insertzival', (req, res) => {
             }
             // get the last insert id
             console.log(`A row has been inserted with rowid ${this.lastID}`);
+
     });
 
     // close db/save to db
@@ -151,6 +165,7 @@ app.post('/api/insertzival', (req, res) => {
       if (err) {
         return console.error(err.message);
       }
+      res.redirect("/index.html");
       // console.log('Close the database connection.');
     });
 
