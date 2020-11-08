@@ -57,8 +57,8 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
     id: rezultatAPIklica[i].id
   });
 
-  var contentString = "<h1>" + rezultatAPIklica[i].ime + "</h1>" +
-                      "<p>" + rezultatAPIklica[i].vrsta + "</p>" +
+  var contentString = "<h1>" + rezultatAPIklica[i].vrsta + "</h1>" +
+                      "<p>" + rezultatAPIklica[i].opis + "</p>" +
                       '<img  style="height:200px" src="' + rezultatAPIklica[i].slika + '">';
 
   var boxText = document.createElement("div");

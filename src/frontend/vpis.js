@@ -167,6 +167,7 @@ function initMap() {
         var value = marker.position.toJSON();
         var string = value.lat + ',' + value.lng;
         document.getElementById("mapInput").value = string;
+        console.log(string);
       });
 }
 // END GOOGLE MAPS
