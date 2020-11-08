@@ -137,9 +137,21 @@ $.getJSON('/api/getzivali', function(data) {
               position.coords.latitude, position.coords.longitude,
               koordinati[0], koordinati[1]) > 10000) continue;
 
-
+            var panelObj = {
+                                barva: animal.barva,
+                                datum: animal.datum,
+                                id: animal.id,
+                                ime: animal.ime,
+                                kontakt_mail: animal.kontakt_mail,
+                                kontakt_tel: animal.kontakt_tel,
+                                lokacija: animal.lokacija,
+                                opis: animal.opis,
+                                slika: animal.slika,
+                                status: animal.status,
+                                vrsta: animal.vrsta
+                            };
           //console.log(data);
-          // var template = document.getElementById('animalCards').innerHTML;
+          var template = document.getElementById('animalCards').innerHTML;
           var rendered = Mustache.render(animalCard, panelObj);
           document.getElementById('animalCards').innerHTML += rendered;
           //console.log(rendered);
