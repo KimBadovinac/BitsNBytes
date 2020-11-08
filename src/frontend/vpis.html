@@ -18,6 +18,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/vpis.css" rel="stylesheet" />
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
 </head>
 <body id="page-top">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -46,16 +49,23 @@
     </section>
     <!--Second-->
     <section class="page-section" id="second">
-        <div class="container">
+        <div class="container h-100">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <h2 class="text-center mt-0">Lokacija</h2>
-                    <img src="" alt="zemljevid">
                 </div>
             </div>
+            <!-- Maps Content -->
+            <div class="row h-100" id="mapRow">
+
+                    <div id="map" class="w-100 h-100" style="height: 500 px"></div>
+
+            </div>
+            <!-- /.row -->
             <div class="down_icon"><a class="btn btn-icon" href="#third"><i style="color:ghostwhite" class="fas fa-arrow-down fa-6x"></i></a></div>
         </div>
     </section>
+    <!--Third-->
     <section class="page-section" id="third">
         <div class="container">
             <div class="row py-4">
@@ -161,7 +171,7 @@
 <!--    <div class="container"><div class="small text-center text-muted"></div></div>-->
 <!--</footer>-->
 <!-- Bootstrap core JS-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
