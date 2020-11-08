@@ -28,6 +28,8 @@
 
     // Collapse Navbar
     var navbarCollapse = function () {
+        var navbar = $("#mainNav");
+        if (navbar == null || navbar.offset() == null) return;
         if ($("#mainNav").offset().top > 100) {
             $("#mainNav").addClass("navbar-scrolled");
         } else {
@@ -128,92 +130,65 @@ function showFileName( event ) {
     infoArea.textContent = 'File name: ' + fileName;
 }
 
-// Data Picker Initialization
-$('.datepicker').datepicker();
-
+// GOOGLE MAPS
 $.getJSON('/api/getzivali', function(data) {
-    // lokacijski podatki uporabnika
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showAllCards)
-    } else {
-        showAllCards("")
-    }
-    function showPosition(position) {
-        // JSON result in `data` variable
-        document.getElementById('animalCards').innerHTML = "";
-        for (const i in data) {
-            const animal = data[i];
+   var rezultatAPIklica = data;
 
-            if (animal.lokacija == null || animal.lokacija == "") animal.lokacija = ["0,0"];
-            var koordinati = animal.lokacija.toString().split(',');
-            // preveri če je žival v radiju X kilometrov
-            if (getDistanceFromLatLonInKm(
-                position.coords.latitude, position.coords.longitude,
-                koordinati[0], koordinati[1]) > 10000) continue;
+var koordinati;
+if (rezultatAPIklica[0].lokacija != null){
+    koordinati = rezultatAPIklica[0].lokacija.split(',');
+} else {
+    koordinati = [0,0];
+}
 
-            var panelObj = {
-                barva: animal.barva,
-                datum: animal.datum,
-                id: animal.id,
-                ime: animal.ime,
-                kontakt_mail: animal.kontakt_mail,
-                kontakt_tel: animal.kontakt_tel,
-                lokacija: animal.lokacija,
-                opis: animal.opis,
-                slika: animal.slika,
-                status: animal.status,
-                vrsta: animal.vrsta
-            };
-            //console.log(data);
-            // var template = document.getElementById('animalCards').innerHTML;
-            var rendered = Mustache.render(animalCard, panelObj);
-            document.getElementById('animalCards').innerHTML += rendered;
-            //console.log(rendered);
-        }
-    }
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 16,
+  center: new google.maps.LatLng(koordinati[0], koordinati[0]),
+  mapTypeId: google.maps.MapTypeId.TERRAIN
+});
 
-    function showAllCards(err) {
-        // JSON result in `data` variable
-        document.getElementById('animalCards').innerHTML = "";
-        for (const i in data) {
-            const animal = data[i];
+var infowindow = new google.maps.InfoWindow();
 
-            var panelObj = {
-                barva: animal.barva,
-                datum: animal.datum,
-                id: animal.id,
-                ime: animal.ime,
-                kontakt_mail: animal.kontakt_mail,
-                kontakt_tel: animal.kontakt_tel,
-                lokacija: animal.lokacija,
-                opis: animal.opis,
-                slika: animal.slika,
-                status: animal.status,
-                vrsta: animal.vrsta
-            };
-            //console.log(data);
-            var template = document.getElementById('animalCards').innerHTML;
-            var rendered = Mustache.render(animalCard, panelObj);
-            document.getElementById('animalCards').innerHTML += rendered;
-            //console.log(rendered);
-        }
-    }
+var marker, i;
 
-    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1);
-        var a =
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon/2) * Math.sin(dLon/2)
-        ;
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c; // Distance in km
-        return d;
+var boxList = [];
+
+for (i = 0; i < rezultatAPIklica.length; i++) {
+  //console.log(rezultatAPIklica[i].lokacija);
+  if (rezultatAPIklica[i].lokacija != null){
+    koordinati = rezultatAPIklica[i].lokacija.split(',');
+  } else {
+    koordinati = [0,0];
+  }
+
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(koordinati[0], koordinati[1]),
+    map: map,
+    id: rezultatAPIklica[i].id
+  });
+
+  var contentString = "<h1>" + rezultatAPIklica[i].ime + "</h1>" +
+                      "<p>" + rezultatAPIklica[i].vrsta + "</p>" +
+                      '<img class="h-100 w-100" src="' + rezultatAPIklica[i].slika + '">';
+
+  var boxText = document.createElement("div");
+    boxText.id = rezultatAPIklica[i].id;
+    boxText.className = "boxText-" + rezultatAPIklica[i].id;
+    boxText.innerHTML = contentString;
+    boxList.push(boxText);
+
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      infowindow.setContent(boxList[i]);
+      infowindow.open(map, marker);
     }
-    // pomožna funkcija za getDistanceFromLatLoninKm
-    function deg2rad(deg) {
-        return deg * (Math.PI/180)
-    }
-})
+  })(marker, i));
+
+  google.maps.event.addDomListener(boxList[i],'click',(function(marker, i) {
+                          return function() {
+                            alert('clicked ' + rezultatAPIklica[i].ime)
+                          }
+                        })(marker, i));
+}
+});
+// END GOOGLE MAPS
