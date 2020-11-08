@@ -1,14 +1,14 @@
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").style.padding = "30px 10px";
-        $('.navbar-collapse').collapse('hide');
-    } else {
-        document.getElementById("navbar").style.padding = "80px 10px";
-        $('.navbar-collapse').collapse('show');
-    }
-}
+// function scrollFunction() {
+//     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+//         document.getElementById("navbar").style.padding = "20px 10px";
+//         $('.navbar-collapse').collapse('hide');
+//     } else {
+//         document.getElementById("navbar").style.padding = "50px 10px";
+//         $('.navbar-collapse').collapse('show');
+//     }
+// }
 
 // GOOGLE MAPS
 var rezultatAPIklic = [
@@ -137,7 +137,7 @@ $.getJSON('/api/getzivali', function(data) {
           // preveri če je žival v radiju X kilometrov
           if (getDistanceFromLatLonInKm(
               position.coords.latitude, position.coords.longitude,
-              koordinati[0], koordinati[1]) > 10) continue;
+              koordinati[0], koordinati[1]) > 10000) continue;
 
           var panelObj = {
               barva: animal.barva,
