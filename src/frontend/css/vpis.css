@@ -10148,33 +10148,52 @@ header.masthead h1 {
 
 .page-section {
     background-color: rosybrown;
+    color: ghostwhite;
 }
 #first {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #second {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #third {
-    height: 100%;
+    height: 100vh;
+    padding: 20vh;
+    text-align: center;
 }
 #vrsta {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #barva {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #datum {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #opis {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #najblizje {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 #kontakt {
-    height: 100%;
+    height: 100vh;
+    padding: 40vh;
+    text-align: center;
 }
 
 #upload {
@@ -10212,16 +10231,29 @@ header.masthead h1 {
     position: relative;
 }
 
-.btn-icon {
-    position: relative;
-    right:    0;
-    bottom:   0;
-}
+/*.btn-icon {*/
+/*    position: relative;*/
+/*    right:    10vw;*/
+/*    bottom:   10vh;*/
+/*    padding-bottom: 10vh;*/
+/*}*/
+/*.down_icon {*/
+/*    position: relative;*/
+/*    right:    50vw;*/
+/*    bottom:   50vh;*/
+/*}*/
 
 .btn-nasel-iscem {
     position: relative;
     right: 50px;
     bottom: 50px;
+}
+
+.form-radio-label {
+    color: #0b2e13;
+}
+.form-radio-input {
+    color: #0b2e13;
 }
 
 .btn-transparent {
@@ -10235,4 +10267,15 @@ header.masthead h1 {
     display: inline-block;
     font-size: 16px;
     border-radius: 12px;
+}
+
+input {
+    visibility:hidden;
+}
+label {
+    cursor: pointer;
+}
+input:checked + label {
+    background-color: grey;
+    border-color: grey;
 }
