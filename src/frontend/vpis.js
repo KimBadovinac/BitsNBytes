@@ -140,15 +140,14 @@ function setMapOnAll(map) {
 
 // GOOGLE MAPS
 function initMap() {
-  const myLatlng = { lat: -25.363, lng: 131.044 };
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: myLatlng,
+    zoom: 15,
+    center: new google.maps.LatLng("46.223135643171844", "14.368588252883047"),
   });
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
     content: "Za lokacijo pritisni na zemljevid!",
-    position: myLatlng,
+    position: new google.maps.LatLng("46.223135643171844", "14.368588252883047"),
   });
   infoWindow.open(map);
   // Configure the click listener.
@@ -165,8 +164,9 @@ function initMap() {
         });
         markers.push(marker);
 
-        document.getElementById("mapInput").value = JSON.stringify(marker.position.toJSON());
-        console.log(document.getElementById("mapInput").value);
+        var value = marker.position.toJSON();
+        var string = value.lat + ',' + value.lng;
+        document.getElementById("mapInput").value = string;
       });
 }
 // END GOOGLE MAPS
