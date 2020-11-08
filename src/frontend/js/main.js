@@ -100,8 +100,8 @@ var animalCard = [ // todo: not used
     '<div class="card h-100">',
       '<a href="#"><img class="card-img-top" src="{{slika}}" alt=""></a>',
       '<div class="card-body">',
-        '<h4 class="card-title">',
-          '<a href="#">{{ime}}</a>',
+        '<h4 class="card-title" style="text-align: center">',
+          '<a href="#">{{vrsta}}</a>',
         '</h4>',
         // '<h5>$24.99</h5>',
         '<p class="card-text">',
@@ -109,7 +109,7 @@ var animalCard = [ // todo: not used
         '<li>Barva: {{barva}}</li>' +
         '<li>Datum: {{datum}}</li>' +
         '</ul>',
-        'Opis: {{opis}}',
+        '<p>Opis: {{opis}}</p>',
         '</p>',
       '</div>',
       // '<div class="card-footer">',

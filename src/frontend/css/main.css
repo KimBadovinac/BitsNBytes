@@ -19,6 +19,14 @@ body {
   z-index: 99;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+}
+
 @media (max-width: 978px) {
 
   body {
