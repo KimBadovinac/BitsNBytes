@@ -47,7 +47,7 @@
             <a class="nav-link" href="#">Izgubil/a sem žival</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Našel/a sem žival</a>
+            <a class="nav-link" href="vpis.html">Našel/a sem žival</a>
           </li>
         </ul>
       </div>
@@ -64,103 +64,96 @@
       <div class="col-lg-3">
 
         <div class="card">
-          <article class="card-group-item">
-            <div class="filter-content">
-              <div class="card-body">
-                <label class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadio" value="" checked>
-                  <span class="form-check-label">
-			    Vsi
-			  </span>
-                </label>
-                <label class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                  <span class="form-check-label">
-			    Izgubljeni
-			  </span>
-                </label>
-                <label class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                  <span class="form-check-label">
-			    Najdeni
-			  </span>
-                </label>
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
-
-          <article class="card-group-item">
-            <div class="filter-content">
-              <div class="card-body">
-                <div class="dropdown">
-                  <label>Žival:</label>
-                  <select class="form-control">
-                    <option value="catalogue" selected>Vsi</option>
-                    <option value="modal">Pes</option>
-                    <option value="price">Mačka</option>
-                    <option value="popular">Drugo</option>
-                  </select>
-                </div>
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
-
-          <article class="card-group-item">
-            <div class="filter-content">
-              <div class="card-body">
-                <div class="dropdown">
-                  <label>Barva:</label>
-                  <form>
-                    <label class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-label">
-				    bela
-				  </span>
-                    </label> <!-- form-check.// -->
-                    <label class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-label">
-				    črna
-				  </span>
-                    </label>  <!-- form-check.// -->
-                    <label class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-label">
-				    siva
-				  </span>
-                    </label>  <!-- form-check.// -->
-                    <label class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-label">
-				    rjava
-				  </span>
-                    </label>  <!-- form-check.// -->
-                    <label class="form-check">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-label">
-				    drugo
-				  </span>
-                    </label>  <!-- form-check.// -->
-                  </form>
-                </div>
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
-
-          <article class="card-group-item">
-            <div class="filter-content">
-              <div class="card-body">
-                <div class="dropdown">
-                  <label>Ključna beseda:</label>
-                  <div class="search-wrapper panel-heading col-sm-12">
-                    <input class="form-control" type="text" v-model="searchQuery" placeholder="plašna..." />
+          <form>
+            <article class="card-group-item">
+              <div class="filter-content">
+                <div class="card-body">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Vsi
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Izgubljeni
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
+                      Najdeni
+                    </label>
                   </div>
                 </div>
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
+              </div>
+            </article>
 
-          <button type="button" class="btn btn-dark btn-lg btn-block">Poišči</button>
+            <article class="card-group-item">
+              <div class="filter-content">
+                <div class="card-body">
+                  <label>Žival:</label>
+                  <select id="inputState" class="form-control">
+                    <option value="vsi" selected>Vsi</option>
+                    <option value="pes">Pes</option>
+                    <option value="macka">Mačka</option>
+                    <option value="drugo">Drugo</option>
+                  </select>
+                </div>
+              </div>
+            </article>
+
+            <article class="card-group-item">
+              <div class="filter-content">
+                <div class="card-body">
+                  <label>Barva:</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      bela
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      črna
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                    <label class="form-check-label" for="defaultCheck1">
+                      siva
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                    <label class="form-check-label" for="defaultCheck1">
+                      rjava
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                    <label class="form-check-label" for="defaultCheck1">
+                      drugo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card-group-item">
+              <div class="filter-content">
+                <div class="card-body">
+                  <label>Ključna beseda:</label>
+                  <input class="form-control" type="text" placeholder="plašna...">
+                </div>
+              </div>
+            </article>
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block">Poišči</button>
+
+          </form>
 
         </div> <!-- card.// -->
 
