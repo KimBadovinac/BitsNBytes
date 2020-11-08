@@ -151,9 +151,9 @@ var animalCard = [ // todo: not used
 $.getJSON('/api/getzivali', function(data) {
     // lokacijski podatki uporabnika
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition, showAllCards)
       } else {
-        console.log("Geolocation is not supported by this browser.");
+        showAllCards("")
       }
     function showPosition(position) {
       // JSON result in `data` variable
@@ -187,6 +187,33 @@ $.getJSON('/api/getzivali', function(data) {
           document.getElementById('animalCards').innerHTML += rendered;
           //console.log(rendered);
       }
+    }
+
+    function showAllCards(err) {
+        // JSON result in `data` variable
+          document.getElementById('animalCards').innerHTML = "";
+          for (const i in data) {
+              const animal = data[i];
+
+              var panelObj = {
+                  barva: animal.barva,
+                  datum: animal.datum,
+                  id: animal.id,
+                  ime: animal.ime,
+                  kontakt_mail: animal.kontakt_mail,
+                  kontakt_tel: animal.kontakt_tel,
+                  lokacija: animal.lokacija,
+                  opis: animal.opis,
+                  slika: animal.slika,
+                  status: animal.status,
+                  vrsta: animal.vrsta
+              };
+              //console.log(data);
+              var template = document.getElementById('animalCards').innerHTML;
+              var rendered = Mustache.render(animalCard, panelObj);
+              document.getElementById('animalCards').innerHTML += rendered;
+              //console.log(rendered);
+          }
     }
 
     function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
