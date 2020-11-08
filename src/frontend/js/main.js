@@ -23,14 +23,6 @@ var rezultatAPIklic = [
 $.getJSON('/api/getzivali', function(data) {
    var rezultatAPIklica = data;
 
-var locations = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];
-
 var koordinati;
 if (rezultatAPIklica[0].lokacija != null){
     koordinati = rezultatAPIklica[0].lokacija.split(',');
@@ -40,7 +32,7 @@ if (rezultatAPIklica[0].lokacija != null){
 
 var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 16,
-  center: new google.maps.LatLng(koordinati[0], koordinati[0]),
+  center: new google.maps.LatLng("46.223135643171844", "14.368588252883047"),
   mapTypeId: google.maps.MapTypeId.TERRAIN
 });
 
@@ -58,6 +50,7 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
     koordinati = [0,0];
   }
 
+  console.log(koordinati);
   marker = new google.maps.Marker({
     position: new google.maps.LatLng(koordinati[0], koordinati[1]),
     map: map,
@@ -66,7 +59,7 @@ for (i = 0; i < rezultatAPIklica.length; i++) {
 
   var contentString = "<h1>" + rezultatAPIklica[i].ime + "</h1>" +
                       "<p>" + rezultatAPIklica[i].vrsta + "</p>" +
-                      '<img  height="100" src="' + rezultatAPIklica[i].slika + '">';
+                      '<img  style="height:200px" src="' + rezultatAPIklica[i].slika + '">';
 
   var boxText = document.createElement("div");
     boxText.id = rezultatAPIklica[i].id;
